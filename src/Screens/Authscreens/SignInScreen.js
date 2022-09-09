@@ -4,6 +4,7 @@ import Header from '../../Components/Header';
 import {colors, parameters, title} from '../../Global/Styles';
 import * as Animatable from 'react-native-animatable';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
+import ClientTabs from '../../navigation/ClientTabs';
 
 const SignInScreen = ({navigation}) => {
   const [TextInput2Focused, setTextInput2Focused] = useState(false);
@@ -71,7 +72,7 @@ const SignInScreen = ({navigation}) => {
           buttonStyle={parameters.styledButton}
           titleStyle={parameters.buttonTitle}
           onPress ={() => {
-            navigation.navigate('HomeScreen')
+            navigation.navigate('ClientTabs')
           }}
         />
       </View>

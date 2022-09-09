@@ -19,7 +19,7 @@ import FoodCard from '../Components/FoodCard';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState('0');
 
@@ -53,7 +53,8 @@ const HomeScreen = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setDelivery(false);
+                setDelivery(false)
+                navigation.navigate('RestaurantMapScreen')
               }}
             >
               <View
@@ -153,7 +154,7 @@ const HomeScreen = () => {
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -5, marginRight: 5 }}>
             Options changing in</Text>
-          <View style={{marginTop: 10}}>
+          <View style={{ marginTop: 10 }}>
             <CountDown
               until={3600}
               size={14}
@@ -161,8 +162,6 @@ const HomeScreen = () => {
               digitTxtStyle={{ color: colors.cardBackground }}
               timeToShow={['M', 'S']}
               timeLabels={{ m: 'Min', s: 'Sec' }}
-
-
             />
           </View>
 
@@ -233,9 +232,25 @@ const HomeScreen = () => {
               </View>
             ))
           }
-
         </View>
       </ScrollView>
+      {delivery &&
+        <View style={styles.floatingButton}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('RestaurantMapScreen')
+            }}>
+
+            <Icon
+              name='place'
+              type='material'
+              size={32}
+              color={colors.button}
+            />
+            <Text style={{ color: colors.grey2 }}>Map</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </View>
   );
 };
@@ -323,4 +338,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.grey2,
   },
+
+  floatingButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 15,
+    backgroundColor: 'white',
+    elevation: 10,
+    width: 60, height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+
+  }
 });
